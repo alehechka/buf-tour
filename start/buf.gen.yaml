@@ -1,4 +1,10 @@
 version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/alehechka/buf-tour/petstore/gen/proto/go
+    except:
+      - buf.build/googleapis/googleapis
 plugins:
   - name: go
     out: gen/proto/go
