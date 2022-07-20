@@ -9,6 +9,7 @@ import (
 	// This import path is based on the name declaration in the go.mod,
 	// and the gen/proto/go output location in the buf.gen.yaml.
 	petv1 "github.com/alehechka/buf-tour/petstore/gen/proto/go/pet/v1"
+	"google.golang.org/genproto/googleapis/type/datetime"
 	"google.golang.org/grpc"
 )
 
@@ -46,5 +47,5 @@ func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetReq
 	petType := req.GetPetType()
 	log.Println("Got a request to create a", petType, "named", name)
 
-	return &petv1.PutPetResponse{}, nil
+	return &petv1.PutPetResponse{Pet: &petv1.Pet{PetType: petType, Name: name, PetId: "1234", CreatedAt: &datetime.DateTime{}}}, nil
 }
