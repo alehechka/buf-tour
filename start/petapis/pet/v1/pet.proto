@@ -52,6 +52,7 @@ message PurchasePetRequest {
   
 message PurchasePetResponse {}
 
+// PetStoreService defines a pet store service.
 service PetStoreService {
   rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
   rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
