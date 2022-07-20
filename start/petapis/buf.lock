@@ -2,6 +2,10 @@
 version: v1
 deps:
   - remote: buf.build
+    owner: alehechka
+    repository: paymentapis
+    commit: 2da9489b20024ce08fa60154e443f3f6
+  - remote: buf.build
     owner: googleapis
     repository: googleapis
     commit: 61dea4c7129940a2aac61f35386b960c
