@@ -3,9 +3,12 @@ module github.com/alehechka/buf-tour/petstore
 go 1.18
 
 require (
-	github.com/alehechka/grpc-playground v0.0.0-20220719131131-72d5d4e89fe7
+	github.com/friendsofgo/graphiql v0.2.2
 	github.com/gin-gonic/gin v1.8.1
+	github.com/graphql-go/graphql v0.8.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.0
+	github.com/pkg/errors v0.9.1
+	github.com/ysugimoto/grpc-graphql-gateway v0.22.0
 	google.golang.org/genproto v0.0.0-20220719170305-83ca9fad585f
 	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.28.0
@@ -18,6 +21,7 @@ require (
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/goccy/go-json v0.9.7 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/iancoleman/strcase v0.0.0-20191112232945-16388991a334 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect

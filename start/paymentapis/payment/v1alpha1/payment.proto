@@ -3,6 +3,7 @@ syntax = "proto3";
 package payment.v1alpha1;
 
 import "google/type/money.proto";
+import "graphql/graphql.proto";
 
 // PaymentProvider represents the supported set
 // of payment providers.
@@ -15,8 +16,8 @@ enum PaymentProvider {
 
 // Order represents a monetary order.
 message Order {
-  string order_id = 1;
-  string recipient_id = 2;
-  google.type.Money amount = 3;
-  PaymentProvider payment_provider = 4;
+  string order_id = 1 [(graphql.field) = {required: false}];;
+  string recipient_id = 2 [(graphql.field) = {required: true}];;
+  google.type.Money amount = 3 [(graphql.field) = {required: true}];;
+  PaymentProvider payment_provider = 4 [(graphql.field) = {required: true}];;
 }

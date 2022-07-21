@@ -4,6 +4,7 @@ package pet.v1;
 
 import "payment/v1alpha1/payment.proto";
 import "google/type/datetime.proto";
+import "graphql/graphql.proto";
 
 // PetType represents the different types of pets in the pet store.
 enum PetType {
@@ -16,14 +17,14 @@ enum PetType {
 
 // Pet represents a pet in the pet store.
 message Pet {
-  PetType pet_type = 1;
+  PetType pet_type = 1 [(graphql.field) = {required: true}];
   string pet_id = 2;
-  string name = 3;
+  string name = 3 [(graphql.field) = {required: true}];
   google.type.DateTime created_at = 4;
 }
 
 message GetPetRequest {
-  string pet_id = 1;
+  string pet_id = 1 [(graphql.field) = {required: true}];
 }
 
 message GetPetResponse {
@@ -31,8 +32,8 @@ message GetPetResponse {
 }
 
 message PutPetRequest {
-  PetType pet_type = 1;
-  string name = 2;
+  PetType pet_type = 1 [(graphql.field) = {required: true}];
+  string name = 2 [(graphql.field) = {required: true}];
 }
 
 message PutPetResponse {
@@ -40,22 +41,47 @@ message PutPetResponse {
 }
 
 message DeletePetRequest {
-  string pet_id = 1;
+  string pet_id = 1 [(graphql.field) = {required: true}];
 }
 
 message DeletePetResponse {}
 
 message PurchasePetRequest {
-  string pet_id = 1;
-  payment.v1alpha1.Order order = 2;
+  string pet_id = 1 [(graphql.field) = {required: true}];
+  payment.v1alpha1.Order order = 2 [(graphql.field) = {required: true}];
 }
   
 message PurchasePetResponse {}
 
 // PetStoreService defines a pet store service.
 service PetStoreService {
-  rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
-  rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
-  rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
-  rpc PurchasePet(PurchasePetRequest) returns (PurchasePetResponse) {}
+  option (graphql.service) = {
+    host: "localhost:8080"
+    insecure: true
+  };
+
+  rpc GetPet(GetPetRequest) returns (GetPetResponse) {
+    option (graphql.schema) = {
+      type: QUERY 
+      name: "getPet"
+    };
+  }
+  rpc PutPet(PutPetRequest) returns (PutPetResponse) {
+    option (graphql.schema) = {
+      type: MUTATION
+      name: "putPet"
+    };
+  }
+  rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {
+    option (graphql.schema) = {
+      type: MUTATION
+      name: "deletePet"
+    };
+  }
+  rpc PurchasePet(PurchasePetRequest) returns (PurchasePetResponse) {
+    option (graphql.schema) = {
+      type: MUTATION
+      name: "purchasePet"
+    };
+  }
 }
