@@ -5,32 +5,36 @@ import (
 	"context"
 
 	paymentv1alpha1 "github.com/alehechka/buf-tour/petstore/gen/proto/go/payment/v1alpha1"
+	"github.com/alehechka/grpc-graphql-gateway/runtime"
 	"github.com/graphql-go/graphql"
 	"github.com/pkg/errors"
-	"github.com/ysugimoto/grpc-graphql-gateway/runtime"
 	"google.golang.org/grpc"
 
 	datetime "google.golang.org/genproto/googleapis/type/datetime"
 )
 
 var (
-	gql__enum_PetType             *graphql.Enum        // enum PetType in pet/v1/pet.proto
-	gql__type_PutPetResponse      *graphql.Object      // message PutPetResponse in pet/v1/pet.proto
-	gql__type_PutPetRequest       *graphql.Object      // message PutPetRequest in pet/v1/pet.proto
-	gql__type_PurchasePetRequest  *graphql.Object      // message PurchasePetRequest in pet/v1/pet.proto
-	gql__type_Pet                 *graphql.Object      // message Pet in pet/v1/pet.proto
-	gql__type_GetPetResponse      *graphql.Object      // message GetPetResponse in pet/v1/pet.proto
-	gql__type_GetPetRequest       *graphql.Object      // message GetPetRequest in pet/v1/pet.proto
-	gql__type_DeletePetRequest    *graphql.Object      // message DeletePetRequest in pet/v1/pet.proto
-	gql__input_PutPetResponse     *graphql.InputObject // message PutPetResponse in pet/v1/pet.proto
-	gql__input_PutPetRequest      *graphql.InputObject // message PutPetRequest in pet/v1/pet.proto
-	gql__input_PurchasePetRequest *graphql.InputObject // message PurchasePetRequest in pet/v1/pet.proto
-	gql__input_Pet                *graphql.InputObject // message Pet in pet/v1/pet.proto
-	gql__input_Order              *graphql.InputObject // message Order in payment/v1alpha1/payment.proto
-	gql__input_Money              *graphql.InputObject // message Money in google/type/money.proto
-	gql__input_GetPetResponse     *graphql.InputObject // message GetPetResponse in pet/v1/pet.proto
-	gql__input_GetPetRequest      *graphql.InputObject // message GetPetRequest in pet/v1/pet.proto
-	gql__input_DeletePetRequest   *graphql.InputObject // message DeletePetRequest in pet/v1/pet.proto
+	gql__enum_PetType              *graphql.Enum        // enum PetType in pet/v1/pettype.proto
+	gql__type_PutPetResponse       *graphql.Object      // message PutPetResponse in pet/v1/pet.proto
+	gql__type_PutPetRequest        *graphql.Object      // message PutPetRequest in pet/v1/pet.proto
+	gql__type_PurchasePetResponse  *graphql.Object      // message PurchasePetResponse in pet/v1/pet.proto
+	gql__type_PurchasePetRequest   *graphql.Object      // message PurchasePetRequest in pet/v1/pet.proto
+	gql__type_Pet                  *graphql.Object      // message Pet in pet/v1/pet.proto
+	gql__type_GetPetResponse       *graphql.Object      // message GetPetResponse in pet/v1/pet.proto
+	gql__type_GetPetRequest        *graphql.Object      // message GetPetRequest in pet/v1/pet.proto
+	gql__type_DeletePetResponse    *graphql.Object      // message DeletePetResponse in pet/v1/pet.proto
+	gql__type_DeletePetRequest     *graphql.Object      // message DeletePetRequest in pet/v1/pet.proto
+	gql__input_PutPetResponse      *graphql.InputObject // message PutPetResponse in pet/v1/pet.proto
+	gql__input_PutPetRequest       *graphql.InputObject // message PutPetRequest in pet/v1/pet.proto
+	gql__input_PurchasePetResponse *graphql.InputObject // message PurchasePetResponse in pet/v1/pet.proto
+	gql__input_PurchasePetRequest  *graphql.InputObject // message PurchasePetRequest in pet/v1/pet.proto
+	gql__input_Pet                 *graphql.InputObject // message Pet in pet/v1/pet.proto
+	gql__input_Order               *graphql.InputObject // message Order in payment/v1alpha1/payment.proto
+	gql__input_Money               *graphql.InputObject // message Money in google/type/money.proto
+	gql__input_GetPetResponse      *graphql.InputObject // message GetPetResponse in pet/v1/pet.proto
+	gql__input_GetPetRequest       *graphql.InputObject // message GetPetRequest in pet/v1/pet.proto
+	gql__input_DeletePetResponse   *graphql.InputObject // message DeletePetResponse in pet/v1/pet.proto
+	gql__input_DeletePetRequest    *graphql.InputObject // message DeletePetRequest in pet/v1/pet.proto
 )
 
 func Gql__enum_PetType() *graphql.Enum {
@@ -65,7 +69,7 @@ func Gql__type_PutPetResponse() *graphql.Object {
 			Name: "Petv1_Type_PutPetResponse",
 			Fields: graphql.Fields{
 				"pet": &graphql.Field{
-					Type: petv1.Gql__type_Pet(),
+					Type: Gql__type_Pet(),
 				},
 			},
 		})
@@ -79,7 +83,7 @@ func Gql__type_PutPetRequest() *graphql.Object {
 			Name: "Petv1_Type_PutPetRequest",
 			Fields: graphql.Fields{
 				"pet_type": &graphql.Field{
-					Type: graphql.NewNonNull(petv1.Gql__enum_PetType()),
+					Type: graphql.NewNonNull(Gql__enum_PetType()),
 				},
 				"name": &graphql.Field{
 					Type: graphql.NewNonNull(graphql.String),
@@ -88,6 +92,20 @@ func Gql__type_PutPetRequest() *graphql.Object {
 		})
 	}
 	return gql__type_PutPetRequest
+}
+
+func Gql__type_PurchasePetResponse() *graphql.Object {
+	if gql__type_PurchasePetResponse == nil {
+		gql__type_PurchasePetResponse = graphql.NewObject(graphql.ObjectConfig{
+			Name: "Petv1_Type_PurchasePetResponse",
+			Fields: graphql.Fields{
+				"_": &graphql.Field{
+					Type: graphql.Boolean,
+				},
+			},
+		})
+	}
+	return gql__type_PurchasePetResponse
 }
 
 func Gql__type_PurchasePetRequest() *graphql.Object {
@@ -114,7 +132,7 @@ func Gql__type_Pet() *graphql.Object {
 			Description: `Pet represents a pet in the pet store.`,
 			Fields: graphql.Fields{
 				"pet_type": &graphql.Field{
-					Type: graphql.NewNonNull(petv1.Gql__enum_PetType()),
+					Type: graphql.NewNonNull(Gql__enum_PetType()),
 				},
 				"pet_id": &graphql.Field{
 					Type: graphql.String,
@@ -137,7 +155,7 @@ func Gql__type_GetPetResponse() *graphql.Object {
 			Name: "Petv1_Type_GetPetResponse",
 			Fields: graphql.Fields{
 				"pet": &graphql.Field{
-					Type: petv1.Gql__type_Pet(),
+					Type: Gql__type_Pet(),
 				},
 			},
 		})
@@ -157,6 +175,20 @@ func Gql__type_GetPetRequest() *graphql.Object {
 		})
 	}
 	return gql__type_GetPetRequest
+}
+
+func Gql__type_DeletePetResponse() *graphql.Object {
+	if gql__type_DeletePetResponse == nil {
+		gql__type_DeletePetResponse = graphql.NewObject(graphql.ObjectConfig{
+			Name: "Petv1_Type_DeletePetResponse",
+			Fields: graphql.Fields{
+				"_": &graphql.Field{
+					Type: graphql.Boolean,
+				},
+			},
+		})
+	}
+	return gql__type_DeletePetResponse
 }
 
 func Gql__type_DeletePetRequest() *graphql.Object {
@@ -179,7 +211,7 @@ func Gql__input_PutPetResponse() *graphql.InputObject {
 			Name: "Petv1_Input_PutPetResponse",
 			Fields: graphql.InputObjectConfigFieldMap{
 				"pet": &graphql.InputObjectFieldConfig{
-					Type: petv1.Gql__input_Pet(),
+					Type: Gql__input_Pet(),
 				},
 			},
 		})
@@ -193,7 +225,7 @@ func Gql__input_PutPetRequest() *graphql.InputObject {
 			Name: "Petv1_Input_PutPetRequest",
 			Fields: graphql.InputObjectConfigFieldMap{
 				"pet_type": &graphql.InputObjectFieldConfig{
-					Type: graphql.NewNonNull(petv1.Gql__enum_PetType()),
+					Type: graphql.NewNonNull(Gql__enum_PetType()),
 				},
 				"name": &graphql.InputObjectFieldConfig{
 					Type: graphql.NewNonNull(graphql.String),
@@ -202,6 +234,20 @@ func Gql__input_PutPetRequest() *graphql.InputObject {
 		})
 	}
 	return gql__input_PutPetRequest
+}
+
+func Gql__input_PurchasePetResponse() *graphql.InputObject {
+	if gql__input_PurchasePetResponse == nil {
+		gql__input_PurchasePetResponse = graphql.NewInputObject(graphql.InputObjectConfig{
+			Name: "Petv1_Input_PurchasePetResponse",
+			Fields: graphql.InputObjectConfigFieldMap{
+				"_": &graphql.InputObjectFieldConfig{
+					Type: graphql.Boolean,
+				},
+			},
+		})
+	}
+	return gql__input_PurchasePetResponse
 }
 
 func Gql__input_PurchasePetRequest() *graphql.InputObject {
@@ -227,7 +273,7 @@ func Gql__input_Pet() *graphql.InputObject {
 			Name: "Petv1_Input_Pet",
 			Fields: graphql.InputObjectConfigFieldMap{
 				"pet_type": &graphql.InputObjectFieldConfig{
-					Type: graphql.NewNonNull(petv1.Gql__enum_PetType()),
+					Type: graphql.NewNonNull(Gql__enum_PetType()),
 				},
 				"pet_id": &graphql.InputObjectFieldConfig{
 					Type: graphql.String,
@@ -302,7 +348,7 @@ func Gql__input_GetPetResponse() *graphql.InputObject {
 			Name: "Petv1_Input_GetPetResponse",
 			Fields: graphql.InputObjectConfigFieldMap{
 				"pet": &graphql.InputObjectFieldConfig{
-					Type: petv1.Gql__input_Pet(),
+					Type: Gql__input_Pet(),
 				},
 			},
 		})
@@ -322,6 +368,20 @@ func Gql__input_GetPetRequest() *graphql.InputObject {
 		})
 	}
 	return gql__input_GetPetRequest
+}
+
+func Gql__input_DeletePetResponse() *graphql.InputObject {
+	if gql__input_DeletePetResponse == nil {
+		gql__input_DeletePetResponse = graphql.NewInputObject(graphql.InputObjectConfig{
+			Name: "Petv1_Input_DeletePetResponse",
+			Fields: graphql.InputObjectConfigFieldMap{
+				"_": &graphql.InputObjectFieldConfig{
+					Type: graphql.Boolean,
+				},
+			},
+		})
+	}
+	return gql__input_DeletePetResponse
 }
 
 func Gql__input_DeletePetRequest() *graphql.InputObject {
@@ -354,13 +414,11 @@ type graphql__resolver_PetStoreService struct {
 }
 
 // new_graphql_resolver_PetStoreService creates pointer of service struct
-func new_graphql_resolver_PetStoreService(conn *grpc.ClientConn) *graphql__resolver_PetStoreService {
+func new_graphql_resolver_PetStoreService(conn *grpc.ClientConn, host string, opts []grpc.DialOption) *graphql__resolver_PetStoreService {
 	return &graphql__resolver_PetStoreService{
-		conn: conn,
-		host: "localhost:8080",
-		dialOptions: []grpc.DialOption{
-			grpc.WithInsecure(),
-		},
+		conn:        conn,
+		host:        host,
+		dialOptions: opts,
 	}
 }
 
@@ -413,7 +471,7 @@ func (x *graphql__resolver_PetStoreService) GetMutations(conn *grpc.ClientConn) 
 			Type: Gql__type_PutPetResponse(),
 			Args: graphql.FieldConfigArgument{
 				"pet_type": &graphql.ArgumentConfig{
-					Type: graphql.NewNonNull(petv1.Gql__enum_PetType()),
+					Type: graphql.NewNonNull(Gql__enum_PetType()),
 				},
 				"name": &graphql.ArgumentConfig{
 					Type:         graphql.NewNonNull(graphql.String),
@@ -487,23 +545,13 @@ func (x *graphql__resolver_PetStoreService) GetMutations(conn *grpc.ClientConn) 
 // therefore gRPC connection will be opened and closed automatically.
 // Occasionally you may worry about open/close performance for each handling graphql request,
 // then you can call RegisterPetStoreServiceGraphqlHandler with *grpc.ClientConn manually.
-func RegisterPetStoreServiceGraphql(mux *runtime.ServeMux) error {
-	return RegisterPetStoreServiceGraphqlHandler(mux, nil)
+func RegisterPetStoreServiceGraphql(mux *runtime.ServeMux, host string, opts ...grpc.DialOption) error {
+	return RegisterPetStoreServiceGraphqlHandler(mux, nil, host, opts...)
 }
 
 // Register package divided graphql handler "with" *grpc.ClientConn.
 // this function accepts your defined grpc connection, so that we reuse that and never close connection inside.
-// You need to close it maunally when application will terminate.
-// Otherwise, you can specify automatic opening connection with ServiceOption directive:
-//
-// service PetStoreService {
-//    option (graphql.service) = {
-//        host: "host:port"
-//        insecure: true or false
-//    };
-//
-//    ...with RPC definitions
-// }
-func RegisterPetStoreServiceGraphqlHandler(mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return mux.AddHandler(new_graphql_resolver_PetStoreService(conn))
+// You need to close it manually when application will terminate.
+func RegisterPetStoreServiceGraphqlHandler(mux *runtime.ServeMux, conn *grpc.ClientConn, host string, opts ...grpc.DialOption) error {
+	return mux.AddHandler(new_graphql_resolver_PetStoreService(conn, host, opts))
 }

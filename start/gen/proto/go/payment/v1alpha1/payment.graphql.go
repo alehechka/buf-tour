@@ -51,7 +51,7 @@ func Gql__type_Order() *graphql.Object {
 					Type: graphql.NewNonNull(money.Gql__type_Money()),
 				},
 				"payment_provider": &graphql.Field{
-					Type: graphql.NewNonNull(paymentv1alpha1.Gql__enum_PaymentProvider()),
+					Type: graphql.NewNonNull(Gql__enum_PaymentProvider()),
 				},
 			},
 		})
@@ -74,7 +74,7 @@ func Gql__input_Order() *graphql.InputObject {
 					Type: graphql.NewNonNull(money.Gql__input_Money()),
 				},
 				"payment_provider": &graphql.InputObjectFieldConfig{
-					Type: graphql.NewNonNull(paymentv1alpha1.Gql__enum_PaymentProvider()),
+					Type: graphql.NewNonNull(Gql__enum_PaymentProvider()),
 				},
 			},
 		})

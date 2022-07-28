@@ -1,9 +1,8 @@
 version: v1
-name: buf.build/alehechka/petapis
+name: buf.build/alehechka/buf-tour
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/frandier/grpc-graphql-gateway
-  - buf.build/alehechka/paymentapis
 breaking:
   use:
     - FILE
