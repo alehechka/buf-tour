@@ -3,7 +3,7 @@ syntax = "proto3";
 package pet.v1;
 
 import "payment/v1alpha1/payment.proto";
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 import "graphql/graphql.proto";
 import "pet/v1/pettype.proto";
 
@@ -12,7 +12,7 @@ message Pet {
   PetType pet_type = 1 [(graphql.field) = {required: true}];
   string pet_id = 2;
   string name = 3 [(graphql.field) = {required: true}];
-  google.type.DateTime created_at = 4;
+  google.protobuf.Timestamp created_at = 4;
 }
 
 message GetPetRequest {
